@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giveaway</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to our Giveaway!</h1>
+    </header>
+    <main>
+        <section class="giveaway-details">
+            <h2>About the Giveaway</h2>
+            <p>Enter our giveaway for a chance to win amazing prizes! Fill out the form below to participate.</p>
+        </section>
+        <section class="entry-form">
+            <h2>Enter the Giveaway</h2>
+            <form id="giveawayForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+                <label for="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    I agree to the <a href="terms.html">terms and conditions</a>
+                </label>
+                <button type="submit">Enter</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Giveaway Site. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
