@@ -16,63 +16,19 @@
         <div class="giveaway-box">
             <h3>Starter Box</h3>
             <div class="price">$5.99</div>
-            <button class="buy-btn" data-price="5.99" aria-label="Buy Starter Box for $5.99">Buy Now</button>
+            <img src="IMG-20250211-WA0001.jpg" alt="Starter Box" />
         </div>
         <div class="giveaway-box">
             <h3>Basic Box</h3>
             <div class="price">$9.99</div>
-            <button class="buy-btn" data-price="9.99" aria-label="Buy Basic Box for $9.99">Buy Now</button>
+            <img src="OIP (1).jpg" alt="Basic Box" />
         </div>
         <div class="giveaway-box">
             <h3>Standard Box</h3>
             <div class="price">$14.99</div>
-            <button class="buy-btn" data-price="14.99" aria-label="Buy Standard Box for $14.99">Buy Now</button>
+            <img src="OIP (2).jpg" alt="Standard Box" />
         </div>
-        <div class="giveaway-box">
-            <h3>Premium Box</h3>
-            <div class="price">$19.99</div>
-            <button class="buy-btn" data-price="19.99" aria-label="Buy Premium Box for $19.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Deluxe Box</h3>
-            <div class="price">$24.99</div>
-            <button class="buy-btn" data-price="24.99" aria-label="Buy Deluxe Box for $24.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Ultimate Box</h3>
-            <div class="price">$29.99</div>
-            <button class="buy-btn" data-price="29.99" aria-label="Buy Ultimate Box for $29.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Exclusive Box</h3>
-            <div class="price">$34.99</div>
-            <button class="buy-btn" data-price="34.99" aria-label="Buy Exclusive Box for $34.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Luxury Box</h3>
-            <div class="price">$39.99</div>
-            <button class="buy-btn" data-price="39.99" aria-label="Buy Luxury Box for $39.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Elite Box</h3>
-            <div class="price">$44.99</div>
-            <button class="buy-btn" data-price="44.99" aria-label="Buy Elite Box for $44.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Supreme Box</h3>
-            <div class="price">$49.99</div>
-            <button class="buy-btn" data-price="49.99" aria-label="Buy Supreme Box for $49.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Grand Box</h3>
-            <div class="price">$54.99</div>
-            <button class="buy-btn" data-price="54.99" aria-label="Buy Grand Box for $54.99">Buy Now</button>
-        </div>
-        <div class="giveaway-box">
-            <h3>Champion Box</h3>
-            <div class="price">$59.99</div>
-            <button class="buy-btn" data-price="59.99" aria-label="Buy Champion Box for $59.99">Buy Now</button>
-        </div>
+        <!-- Continue for other boxes -->
     </div>
 
     <div id="paymentModal" class="modal">
@@ -119,7 +75,7 @@
             
             // Here you would typically send the data to your server
             // For this example, we'll redirect directly to PayPal
-            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}`;
+            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}[...]
             
             window.location.href = paypalUrl;
             return false;
