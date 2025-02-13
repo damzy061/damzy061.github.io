@@ -10,25 +10,6 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Basic styles for modal and container */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
         .giveaway-box {
             border: 1px solid #ccc;
             padding: 10px;
@@ -53,86 +34,68 @@
     </style>
 </head>
 <body>
-    <marquee behavior="scroll" direction="left">Testimony 1: This giveaway is amazing! | Testimony 2: I love the prizes! | Testimony 3: Highly recommended!</marquee>
     <h1>Counts Promo Giveaway Boxes</h1>
     <div class="container">
-        <!-- Generate 10 boxes with different prices -->
+        <!-- Generate boxes with different prices -->
         <div class="giveaway-box" data-price="20.99">
             <h3>Starter Box</h3>
             <div class="price">$20.99</div>
             <img src="starter-box.jpg" alt="Starter Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('20.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="50.99">
             <h3>Basic Box</h3>
             <div class="price">$50.99</div>
             <img src="OIP (1).jpg" alt="Basic Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('50.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="90.99">
             <h3>Standard Box</h3>
             <div class="price">$90.99</div>
             <img src="OIP (2).jpg" alt="Standard Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('90.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="150.99">
             <h3>Premium Box</h3>
             <div class="price">$150.99</div>
             <img src="OIP (3).jpg" alt="Premium Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('150.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="200.99">
             <h3>Deluxe Box</h3>
             <div class="price">$200.99</div>
             <img src="OIP (4).jpg" alt="Deluxe Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('200.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="250.99">
             <h3>Ultimate Box</h3>
             <div class="price">$250.99</div>
             <img src="OIP (5).jpg" alt="Ultimate Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('250.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="34.99">
             <h3>Exclusive Box</h3>
             <div class="price">$34.99</div>
             <img src="OIP (6).jpg" alt="Exclusive Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('34.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="500.99">
             <h3>Super Box</h3>
             <div class="price">$500.99</div>
             <img src="OIP (7).jpg" alt="Super Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('500.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="800.99">
             <h3>Mega Box</h3>
             <div class="price">$800.99</div>
             <img src="OIP (8).jpg" alt="Mega Box" />
-            <button class="buy-btn">Buy Now</button>
+            <button class="buy-btn" onclick="redirectToPayment('800.99')">Buy Now</button>
         </div>
         <div class="giveaway-box" data-price="1000.99">
             <h3>Ultimate Deluxe Box</h3>
             <div class="price">$1000.99</div>
             <img src="OIP (9).jpg" alt="Ultimate Deluxe Box" />
-            <button class="buy-btn">Buy Now</button>
-        </div>
-    </div>
-
-    <div id="paymentModal" class="modal">
-        <div class="modal-content">
-            <h3>Enter Your Details</h3>
-            <form id="paymentForm" name="counts promo" onsubmit="return processPayment(event)">
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" required>
-                </div>
-                <button type="submit" class="buy-btn">Proceed to Payment</button>
-            </form>
+            <button class="buy-btn" onclick="redirectToPayment('1000.99')">Buy Now</button>
         </div>
     </div>
 
@@ -142,31 +105,17 @@
     </footer>
 
     <script>
-        let selectedPrice = null;
+        function redirectToPayment(price) {
+            const email = prompt("Please enter your email:");
+            const phone = prompt("Please enter your phone number:");
 
-        document.querySelectorAll('.buy-btn').forEach(button => {
-            button.addEventListener('click', (event) => {
-                selectedPrice = event.target.closest('.giveaway-box').dataset.price;
-                document.getElementById('paymentModal').style.display = 'block';
-            });
-        });
-
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = 'none';
+            if (email && phone) {
+                // Redirect to PayPal with the selected price and user details
+                const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${price}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}`;
+                window.location.href = paypalUrl;
+            } else {
+                alert("Email and phone number are required to proceed.");
             }
-        }
-
-        function processPayment(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            
-            // Redirect to PayPal with the selected price and user details
-            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}[...]
-            
-            window.location.href = paypalUrl;
-            return false;
         }
     </script>
 </body>
