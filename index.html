@@ -8,60 +8,113 @@
     <meta name="author" content="damzy061">
     <title>Counts Promo Giveaway</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styles for modal and container */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .giveaway-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        .price {
+            font-size: 1.5em;
+            color: green;
+        }
+        .buy-btn {
+            cursor: pointer;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        .buy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <h1>Counts Promo Giveaway Boxes</h1>
     <div class="container">
         <!-- Generate 10 boxes with different prices -->
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="20.99">
             <h3>Starter Box</h3>
             <div class="price">$20.99</div>
-            <img src="" alt="Starter Box" />
+            <img src="starter-box.jpg" alt="Starter Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="50.99">
             <h3>Basic Box</h3>
             <div class="price">$50.99</div>
             <img src="OIP (1).jpg" alt="Basic Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="90.99">
             <h3>Standard Box</h3>
             <div class="price">$90.99</div>
             <img src="OIP (2).jpg" alt="Standard Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="150.99">
             <h3>Premium Box</h3>
             <div class="price">$150.99</div>
             <img src="OIP (3).jpg" alt="Premium Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="200.99">
             <h3>Deluxe Box</h3>
             <div class="price">$200.99</div>
             <img src="OIP (4).jpg" alt="Deluxe Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="250.99">
             <h3>Ultimate Box</h3>
             <div class="price">$250.99</div>
             <img src="OIP (5).jpg" alt="Ultimate Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="34.99">
             <h3>Exclusive Box</h3>
             <div class="price">$34.99</div>
             <img src="OIP (6).jpg" alt="Exclusive Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="500.99">
             <h3>Super Box</h3>
             <div class="price">$500.99</div>
             <img src="OIP (7).jpg" alt="Super Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="800.99">
             <h3>Mega Box</h3>
             <div class="price">$800.99</div>
             <img src="OIP (8).jpg" alt="Mega Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
-        <div class="giveaway-box">
+        <div class="giveaway-box" data-price="1000.99">
             <h3>Ultimate Deluxe Box</h3>
             <div class="price">$1000.99</div>
             <img src="OIP (9).jpg" alt="Ultimate Deluxe Box" />
+            <button class="buy-btn">Buy Now</button>
         </div>
     </div>
 
@@ -84,14 +137,15 @@
 
     <footer>
         <p>Contact us at: <a href="mailto:mglink@mail.com">mglink@mail.com</a></p>
+        < p>Follow us on social media for updates!</p>
     </footer>
 
     <script>
         let selectedPrice = null;
 
         document.querySelectorAll('.buy-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                selectedPrice = button.dataset.price;
+            button.addEventListener('click', (event) => {
+                selectedPrice = event.target.closest('.giveaway-box').dataset.price;
                 document.getElementById('paymentModal').style.display = 'block';
             });
         });
@@ -107,9 +161,353 @@
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             
-            // Here you would typically send the data to your server
-            // For this example, we'll redirect directly to PayPal
-            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}[...]
+            // Redirect to PayPal with the selected price and user details
+            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}`;
+            
+            window.location.href = paypalUrl;
+            return false;
+        }
+    </script>
+</body>
+</html>
+``` ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join our giveaway for a chance to win amazing prizes!">
+    <meta name="keywords" content="giveaway, prizes, promo">
+    <meta name="author" content="damzy061">
+    <title>Counts Promo Giveaway</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styles for modal and container */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .giveaway-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        .price {
+            font-size: 1.5em;
+            color: green;
+        }
+        .buy-btn {
+            cursor: pointer;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        .buy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counts Promo Giveaway Boxes</h1>
+    <div class="container">
+        <!-- Generate 10 boxes with different prices -->
+        <div class="giveaway-box" data-price="20.99">
+            <h3>Starter Box</h3>
+            <div class="price">$20.99</div>
+            <img src="starter-box.jpg" alt="Starter Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="50.99">
+            <h3>Basic Box</h3>
+            <div class="price">$50.99</div>
+            <img src="OIP (1).jpg" alt="Basic Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="90.99">
+            <h3>Standard Box</h3>
+            <div class="price">$90.99</div>
+            <img src="OIP (2).jpg" alt="Standard Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="150.99">
+            <h3>Premium Box</h3>
+            <div class="price">$150.99</div>
+            <img src="OIP (3).jpg" alt="Premium Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="200.99">
+            <h3>Deluxe Box</h3>
+            <div class="price">$200.99</div>
+            <img src="OIP (4).jpg" alt="Deluxe Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="250.99">
+            <h3>Ultimate Box</h3>
+            <div class="price">$250.99</div>
+            <img src="OIP (5).jpg" alt="Ultimate Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="34.99">
+            <h3>Exclusive Box</h3>
+            <div class="price">$34.99</div>
+            <img src="OIP (6).jpg" alt="Exclusive Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="500.99">
+ <h3>Super Box</h3>
+            <div class="price">$500.99</div>
+            <img src="OIP (7).jpg" alt="Super Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="800.99">
+            <h3>Mega Box</h3>
+            <div class="price">$800.99</div>
+            <img src="OIP (8).jpg" alt="Mega Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="1000.99">
+            <h3>Ultimate Deluxe Box</h3>
+            <div class="price">$1000.99</div>
+            <img src="OIP (9).jpg" alt="Ultimate Deluxe Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+    </div>
+
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h3>Enter Your Details</h3>
+            <form id="paymentForm" name="counts promo" onsubmit="return processPayment(event)">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <button type="submit" class="buy-btn">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact us at: <a href="mailto:mglink@mail.com">mglink@mail.com</a></p>
+        <p>Follow us on social media for updates!</p>
+    </footer>
+
+    <script>
+        let selectedPrice = null;
+
+        document.querySelectorAll('.buy-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                selectedPrice = event.target.closest('.giveaway-box').dataset.price;
+                document.getElementById('paymentModal').style.display = 'block';
+            });
+        });
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+
+        function processPayment(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Redirect to PayPal with the selected price and user details
+            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}`;
+            
+            window.location.href = paypalUrl;
+            return false;
+        }
+    </script>
+</body>
+</html> ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join our giveaway for a chance to win amazing prizes!">
+    <meta name="keywords" content="giveaway, prizes, promo">
+    <meta name="author" content="damzy061">
+    <title>Counts Promo Giveaway</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Basic styles for modal and container */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        .giveaway-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        .price {
+            font-size: 1.5em;
+            color: green;
+        }
+        .buy-btn {
+            cursor: pointer;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        .buy-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Counts Promo Giveaway Boxes</h1>
+    <div class="container">
+        <!-- Generate 10 boxes with different prices -->
+        <div class="giveaway-box" data-price="20.99">
+            <h3>Starter Box</h3>
+            <div class="price">$20.99</div>
+            <img src="starter-box.jpg" alt="Starter Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="50.99">
+            <h3>Basic Box</h3>
+            <div class="price">$50.99</div>
+            <img src="OIP (1).jpg" alt="Basic Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="90.99">
+            <h3>Standard Box</h3>
+            <div class="price">$90.99</div>
+            <img src="OIP (2).jpg" alt="Standard Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="150.99">
+            <h3>Premium Box</h3>
+            <div class="price">$150.99</div>
+            <img src="OIP (3).jpg" alt="Premium Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="200.99">
+            <h3>Deluxe Box</h3>
+            <div class="price">$200.99</div>
+            <img src="OIP (4).jpg" alt="Deluxe Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="250.99">
+            <h3>Ultimate Box</h3>
+            <div class="price">$250.99</div>
+            <img src="OIP (5).jpg" alt="Ultimate Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="34.99">
+            <h3>Exclusive Box</h3>
+            <div class="price">$34.99</div>
+            <img src="OIP (6).jpg" alt="Exclusive Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="500.99">
+ <h3>Super Box</h3>
+            <div class="price">$500.99</div>
+            <img src="OIP (7).jpg" alt="Super Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="800.99">
+            <h3>Mega Box</h3>
+            <div class="price">$800.99</div>
+            <img src="OIP (8).jpg" alt="Mega Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        <div class="giveaway-box" data-price="1000.99">
+            <h3>Ultimate Deluxe Box</h3>
+            <div class="price">$1000.99</div>
+            <img src="OIP (9).jpg" alt="Ultimate Deluxe Box" />
+            <button class="buy-btn">Buy Now</button>
+        </div>
+    </div>
+
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h3>Enter Your Details</h3>
+            <form id="paymentForm" name="counts promo" onsubmit="return processPayment(event)">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <button type="submit" class="buy-btn">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact us at: <a href="mailto:mglink@mail.com">mglink@mail.com</a></p>
+        <p>Follow us on social media for updates!</p>
+    </footer>
+
+    <script>
+        let selectedPrice = null;
+
+        document.querySelectorAll('.buy-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                selectedPrice = event.target.closest('.giveaway-box').dataset.price;
+                document.getElementById('paymentModal').style.display = 'block';
+            });
+        });
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+
+        function processPayment(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Redirect to PayPal with the selected price and user details
+            const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mglink@mail.com&amount=${selectedPrice}&currency_code=USD&item_name=Giveaway Box&custom=${email}|${phone}`;
             
             window.location.href = paypalUrl;
             return false;
